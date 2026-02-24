@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="eng">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Micro Project - Progress #1</title>
+
+    <!-- p5 core -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <h1>Micro Project - Progress #1</h1>
+    <h2>Concept Summary</h2>
+    <p>
+      This sketch involves a shape inside of a constraint that the user must try
+      to get out in a certain amount of time. The user can click the mouse to
+      start a timer, after which they will be able to use the arrow keys to move
+      the shape around. If they can get the shape out of the constraint before
+      the timer runs out, a win message will appear. If they fail, the sketch
+      will reset.
+    </p>
+
+    <h2>Primary variable</h2>
+    <p>
+      let gameStarted = false<br />
+      <br />
+      This variable will be used to determine whether the game has started or
+      not. It will be set to true when the user clicks the mouse to start the
+      timer and will also allow the user to move the shape around using the
+      arrow keys.
+    </p>
+    <h2>Base Build</h2>
+    <p>
+      State 1: Shape inside of visible constraint. The user can click the mouse
+      to start the timer.<br />
+      State 2: Once the mouse is clicked, the constraint becomes invisible and
+      the user can move the shape around using the arrow keys.
+    </p>
+
+    <h2>Structural Growth</h2>
+    <p>
+      Over the next few weeks I plan on adding a timer and text to the sketch,
+      instructing the user on what to do and how much time they have left, as
+      well as a win message. The constraint also needs to be developed further.
+      The goal is to have an irregular constraint shape, like a simple maze,
+      that the user has to navigate through. There will be one exit somewhere
+      that will allow the user to move the shape outside of the constraint and
+      win. I also need to build in the functionality of resetting the game in
+      case the user fails to get out of the constraint in time. Additionally, I
+      want to make the movement smoother and work with holding down the arrow
+      keys instead of just tapping them.
+    </p>
+
+    <!-- p5 sketch -->
+    <script src="js/sketchProgress1.js"></script>
+  </body>
+</html>
