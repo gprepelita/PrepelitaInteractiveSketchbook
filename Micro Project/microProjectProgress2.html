@@ -11,6 +11,32 @@
   <body>
     <h1>Micro Project - Progress #2</h1>
     <h2>Current Build</h2>
+    <p>
+      In this build, I was able to set a limited path for the circle to move
+      through. I changed the way that works by going away from using
+      constraints, since I realized that I couldn't use them to create a long
+      maze in the way I wanted. The circle would be stuck inside of the first
+      constraint and wouldn't be able to move through the rest of the maze.
+      Instead, I used a check to see if the circle is inside each of the
+      rectangles that make up the maze and only be able to move inside that
+      area. My main variable is still the gameStarted to check when the game
+      begins, but the variables that make up the maze are also important. The
+      things that change with user interaction are still circle movement, the
+      timer and the disappearance of the maze on start.
+    </p>
+
+    <h1>Pressures</h1>
+    <p>
+      The tension in this system comes mainly from the timer the user will have
+      to beat in order to win.
+    </p>
+
+    <h1>Structural Addition</h1>
+    <p>
+      The addition I made this week was the construction of a simple maze with
+      one turn as well as the creation of a function to check if the circle is
+      inside the maze.
+    </p>
 
     <!-- p5 sketch -->
     <script src="js/sketchProgress2.js"></script>
