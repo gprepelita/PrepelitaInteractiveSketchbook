@@ -33,25 +33,37 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(0);
 
   // Drawing the maze region
   if (!gameStarted) {
-    noFill();
-    stroke(50);
+    fill(255);
+    noStroke();
     strokeWeight(2);
     rect(boxOneX, boxOneY, boxOneW, boxOneH);
     rect(boxTwoX, boxTwoY, boxTwoW, boxTwoH);
+    textSize(32);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text(
+      "Escape the maze in time\nMove with arrow keys\nClick to Start",
+      width / 6,
+      height / 4,
+    );
   }
 
   // Drawing circle
   noStroke();
-  fill(0);
+  fill(200, 50, 50);
   ellipse(circleX, circleY, circleRadius);
 }
 
-// Circle movement (only if the new position is inside the boxes)
 function keyPressed() {
+  // only allow movement after the game has started
+  if (!gameStarted) {
+    return;
+  }
+
   let newX = circleX;
   let newY = circleY;
 
@@ -70,6 +82,7 @@ function keyPressed() {
     circleY = newY;
   }
 }
+// Circle movement (only if the new position is inside the boxes)
 
 function mousePressed() {
   gameStarted = true;

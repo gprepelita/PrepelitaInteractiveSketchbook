@@ -1,19 +1,49 @@
 let offset = 0;
 let offsetY = 0;
+
 let startTime;
 let timeLimit = 10000;
+
 let timerStarted = false;
+let level = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //RECT MODE CENTER measures placement from the center of the shape
   rectMode(CENTER);
-
-  startTime = millis();
 }
 
 function draw() {
   background(0);
+
+  // level rules
+  if (level === 1) {
+    timeLimit = 10000;
+  }
+
+  if (level === 2) {
+    timeLimit = 5000;
+  }
+
+  // timer logic
+  if (timerStarted) {
+    let elapsed = millis() - startTime;
+    let remaining = floor((timeLimit - elapsed) / 1000);
+  }
+
+  textAlign(CENTER);
+  offset = 0;
+  offsetY = 0;
+  timerStarted = false;
+
+  // level 1 win - advance to level 2
+  if (level === 1 && squareX > width - 5) {
+    level = 2;
+  }
+
+  // level 2 final win
+  if (level === 2 && squareX > width - 50) {
+  }
 
   let elapsedTime = millis() - startTime;
 
@@ -46,8 +76,8 @@ function keyPressed() {
     timerStarted = true;
   }
 
-  offset += random(-50, 50);
-  offsetY += random(-75, 75);
+  offset += random(-50, 150);
+  offsetY += random(-50, 150);
 }
 
 function windowResized() {
