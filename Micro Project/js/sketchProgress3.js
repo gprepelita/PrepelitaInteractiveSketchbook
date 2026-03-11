@@ -1,3 +1,4 @@
+let menuOff = false;
 let gameStarted = false;
 let moleX = 827;
 let moleY = 300;
@@ -47,37 +48,43 @@ function insideBox(x, y) {
 
 function draw() {
   background(64, 42, 34);
-  gameStarted ? drawGame() : drawMenu();
+  menuOff ? drawGame() : drawMenu();
 }
 
 function drawGame() {
   // Drawing all boxes using a loop
-  fill(115, 83, 64);
-  noStroke();
-  for (let b of boxes) {
-    rect(b.x, b.y, b.w, b.h);
+  if (!gameStarted) {
+    fill(115, 83, 64);
+    noStroke();
+    for (let b of boxes) {
+      rect(b.x, b.y, b.w, b.h);
+    }
   }
 
   // Movement with WASD keys
   let speed = 5;
-  let nextX = moleX,
-    nextY = moleY;
+  let nextX = moleX;
+  let nextY = moleY;
 
   if (keyIsDown(65)) {
     nextX -= speed;
     moleAngle = 180;
+    gameStarted = true;
   } // A
   if (keyIsDown(68)) {
     nextX += speed;
     moleAngle = 0;
+    gameStarted = true;
   } // D
   if (keyIsDown(87)) {
     nextY -= speed;
     moleAngle = 270;
+    gameStarted = true;
   } // W
   if (keyIsDown(83)) {
     nextY += speed;
     moleAngle = 90;
+    gameStarted = true;
   } // S
 
   if (insideBox(nextX, nextY)) {
@@ -96,6 +103,17 @@ function drawGame() {
   // Drawing worm
   worm.resize(40, 0);
   image(worm, width - 60, height / 2);
+
+  // for the first 30 for every 60, show text
+  if (frameCount % 60 < 20) {
+    if (!gameStarted) {
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textFont(font);
+      textSize(32);
+      text("Start Moving to Begin", width - 200, height - 100);
+    }
+  }
 }
 
 function drawMenu() {
@@ -106,12 +124,12 @@ function drawMenu() {
   text("Mole Run!", width / 2, 100);
   textSize(32);
   text(
-    "Catch the worm in time!\nMove with WASD keys\nClick to Start",
+    "Catch the worm in time!\nYou will have to memorize the path\n\n\nControls:\nMove with WASD keys\nClick to Start",
     width / 2,
     height / 2,
   );
 }
 
 function mousePressed() {
-  gameStarted = true;
+  menuOff = true;
 }
