@@ -95,7 +95,7 @@ function drawGame() {
     text("Level " + level, width / 2, height / 2 - 80);
 
     textSize(40);
-    text("Press any key to begin", width / 2, height / 2 + 20);
+    text("Press Any Key", width / 2, height / 2 + 20);
     // stop the rest of drawGame from running
     return;
   }
@@ -209,10 +209,15 @@ function drawGame() {
     }
     fill(255);
     textFont(font);
-    textSize(26);
+    textSize(32);
     textAlign(LEFT, TOP);
-    text("Time Remaining: " + timeLeft, 40, 20);
+    text("Time: " + timeLeft, width - 200, height - 100);
     text("Level: " + level, width / 2, 20);
+    if (!revealUsed) {
+      text("Press SPACE to reveal maze", 40, 20);
+    } else {
+      text("Maze Reveal Used", 40, 20);
+    }
   }
   // for the first 30 for every 60, show text
   if (frameCount % 60 < 20) {
@@ -223,14 +228,6 @@ function drawGame() {
       textSize(32);
       text("Start Moving to Begin", width - 200, height - 100);
     }
-  }
-  fill(255);
-  textSize(20);
-
-  if (!revealUsed) {
-    text("Press SPACE to reveal maze", 40, 60);
-  } else {
-    text("Maze Reveal Used", 40, 60);
   }
 }
 
@@ -262,5 +259,5 @@ function keyPressed() {
 }
 function mousePressed() {
   menuOff = true;
-  levelStartScreen = true;
+  levelStartScreen = false;
 }
