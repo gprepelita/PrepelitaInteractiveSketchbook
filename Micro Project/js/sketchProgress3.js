@@ -1,26 +1,37 @@
 let menuOff = false;
 let gameStarted = false;
+let gameWon = false;
 let moleX = 827;
 let moleY = 300;
 let moleAngle = 0;
 let mole;
 let worm;
 let font;
+let startTime;
+let timeLimit = 20000;
+let timeLeft;
+let gameOver = false;
+let level = 1;
+let levelStartScreen = false;
+let showMaze = false;
+let mazeRevealStart = 0;
+let mazeRevealDuration = 1000;
+let revealUsed = false;
 
 // Store all maze boxes in one array
 const boxes = [
   { x: 800, y: 50, w: 150, h: 400 }, //box 1
-  { x: 100, y: 50, w: 850, h: 150 }, //box 2
+  { x: 50, y: 50, w: 2000, h: 150 }, //box 2
   { x: 100, y: 50, w: 150, h: 850 }, //box 3
   { x: 100, y: 750, w: 400, h: 150 }, //box 4
-  { x: 350, y: 550, w: 150, h: 350 }, //box 5
-  { x: 350, y: 550, w: 600, h: 150 }, //box 6
+  { x: 350, y: 450, w: 150, h: 450 }, //box 5
+  { x: 350, y: 550, w: 700, h: 150 }, //box 6
   { x: 800, y: 550, w: 150, h: 350 }, //box 7
-  { x: 800, y: 750, w: 500, h: 150 }, //box 8
+  { x: 800, y: 750, w: 600, h: 150 }, //box 8
   { x: 1150, y: 50, w: 150, h: 850 }, //box 9
-  { x: 1150, y: 50, w: 400, h: 150 }, //box 10
-  { x: 1400, y: 50, w: 150, h: 500 }, //box 11
-  { x: 1400, y: 400, w: 400, h: 150 }, //box 12
+  { x: 1150, y: 50, w: 450, h: 150 }, //box 10
+  { x: 1400, y: 50, w: 150, h: 600 }, //box 11
+  { x: 1400, y: 400, w: 500, h: 150 }, //box 12
 ];
 
 function preload() {
@@ -31,8 +42,11 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  angleMode(DEGREES); // changing angle mode to degrees for easier rotation
-  mole.resize(100, 0); // Resizing sprite to fit better in the maze boxes
+  // changing angle mode to degrees for easier rotation
+  angleMode(DEGREES);
+  // Resizing sprites to fit better in the maze boxes
+  mole.resize(100, 0);
+  worm.resize(40, 0);
 }
 
 // Check if (x,y) is inside ANY box in the array
@@ -45,6 +59,25 @@ function insideBox(x, y) {
       y < b.y + b.h - mole.height,
   );
 }
+// function for the level structure
+function startNextLevel() {
+  level++;
+  gameWon = false;
+  gameOver = false;
+  gameStarted = false;
+  levelStartScreen = true;
+  revealUsed = false;
+
+  moleX = 827;
+  moleY = 300;
+
+  if (level === 2) {
+    timeLimit = 15000;
+  }
+  if (level === 3) {
+    timeLimit = 10000;
+  }
+}
 
 function draw() {
   background(64, 42, 34);
@@ -52,8 +85,27 @@ function draw() {
 }
 
 function drawGame() {
+  // Drawing a start screen for each level
+  if (levelStartScreen) {
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textFont(font);
+
+    textSize(90);
+    text("Level " + level, width / 2, height / 2 - 80);
+
+    textSize(40);
+    text("Press any key to begin", width / 2, height / 2 + 20);
+    // stop the rest of drawGame from running
+    return;
+  }
+
+  // Handling maze reveal timer
+  if (showMaze && millis() - mazeRevealStart > mazeRevealDuration) {
+    showMaze = false;
+  }
   // Drawing all boxes using a loop
-  if (!gameStarted) {
+  if (!gameStarted || showMaze) {
     fill(115, 83, 64);
     noStroke();
     for (let b of boxes) {
@@ -61,29 +113,41 @@ function drawGame() {
     }
   }
 
-  // Movement with WASD keys
-  let speed = 5;
+  // Movement with WASD keys and starting the timer on first move
+  let speed = 15;
   let nextX = moleX;
   let nextY = moleY;
 
   if (keyIsDown(65)) {
     nextX -= speed;
     moleAngle = 180;
+    if (!gameStarted) {
+      startTime = millis();
+    }
     gameStarted = true;
   } // A
   if (keyIsDown(68)) {
     nextX += speed;
     moleAngle = 0;
+    if (!gameStarted) {
+      startTime = millis();
+    }
     gameStarted = true;
   } // D
   if (keyIsDown(87)) {
     nextY -= speed;
     moleAngle = 270;
+    if (!gameStarted) {
+      startTime = millis();
+    }
     gameStarted = true;
   } // W
   if (keyIsDown(83)) {
     nextY += speed;
     moleAngle = 90;
+    if (!gameStarted) {
+      startTime = millis();
+    }
     gameStarted = true;
   } // S
 
@@ -92,7 +156,7 @@ function drawGame() {
     moleY = nextY;
   }
 
-  // Drawing mole
+  // Drawing the mole
   push();
   translate(moleX + mole.width / 2, moleY + mole.height / 2);
   rotate(moleAngle + 90);
@@ -100,10 +164,56 @@ function drawGame() {
   image(mole, 0, 0);
   pop();
 
-  // Drawing worm
-  worm.resize(40, 0);
-  image(worm, width - 60, height / 2);
+  // Drawing the worm
+  let wormX = width - 60;
+  let wormY = height / 2;
+  image(worm, wormX, wormY);
 
+  // Checking for win by collision detection
+  if (
+    dist(moleX + mole.width / 2, moleY + mole.height / 2, wormX, wormY) < 50
+  ) {
+    if (level === 1) {
+      startNextLevel();
+    } else if (level === 2) {
+      startNextLevel();
+    } else {
+      gameWon = true;
+    }
+  }
+  if (gameWon) {
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textFont(font);
+    textSize(100);
+    text("You Win!", width / 2, height / 3);
+    noLoop(); // Stop the draw loop to freeze the win screen
+  }
+
+  // Losing condition
+  if (gameOver && !gameWon) {
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(100);
+    text("Try Again!", width / 2, height / 3);
+    noLoop();
+  }
+
+  // timer logic
+  if (gameStarted && !gameWon) {
+    let elapsed = millis() - startTime;
+    timeLeft = max(0, ceil((timeLimit - elapsed) / 1000));
+
+    if (elapsed >= timeLimit) {
+      gameOver = true;
+    }
+    fill(255);
+    textFont(font);
+    textSize(26);
+    textAlign(LEFT, TOP);
+    text("Time Remaining: " + timeLeft, 40, 20);
+    text("Level: " + level, width / 2, 20);
+  }
   // for the first 30 for every 60, show text
   if (frameCount % 60 < 20) {
     if (!gameStarted) {
@@ -113,6 +223,14 @@ function drawGame() {
       textSize(32);
       text("Start Moving to Begin", width - 200, height - 100);
     }
+  }
+  fill(255);
+  textSize(20);
+
+  if (!revealUsed) {
+    text("Press SPACE to reveal maze", 40, 60);
+  } else {
+    text("Maze Reveal Used", 40, 60);
   }
 }
 
@@ -130,6 +248,19 @@ function drawMenu() {
   );
 }
 
+function keyPressed() {
+  if (levelStartScreen) {
+    levelStartScreen = false;
+    return;
+  }
+  // space bar reveals maze
+  if (keyCode === 32) {
+    showMaze = true;
+    mazeRevealStart = millis();
+    revealUsed = true;
+  }
+}
 function mousePressed() {
   menuOff = true;
+  levelStartScreen = true;
 }
