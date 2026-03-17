@@ -35,8 +35,8 @@ const boxes = [
 ];
 
 function preload() {
-  mole = loadImage("img/molesprite.svg");
-  worm = loadImage("img/wormsprite.svg");
+  mole = loadImage("img/molesprite.png");
+  worm = loadImage("img/wormsprite.png");
   font = loadFont("fonts/Qaaxee.ttf");
 }
 
