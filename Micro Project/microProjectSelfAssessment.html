@@ -8,9 +8,76 @@
     <!-- p5 core -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
   </head>
+  <body>
     <h1>Micro Project Self-Assessment</h1>
-    <h2>Rubric</h2>
- <!-- p5 sketch -->
-    <script src="js/sketchSelfAssessment.js"></script>
+    <h2>Criteria</h2>
+    <h3>Core Rule & System Clarity</h3>
+    <p>
+      Score: 20<br />Justification: The core rules of my sketch is to move the
+      avatar, within the constraints, to the end of the maze before the timer
+      runs out.
+    </p>
+    <h3>State Progression</h3>
+    <p>
+      Score: 15<br />Justification: There are multiple different states in the
+      sketch. There is the initial menu, the visible maze before the player has
+      started moving, the invisible maze while the player is moving, the screen
+      in between levels, the win screen and the loss screen. They menu and other
+      screens with text serve to inform the player of what is happening/has
+      happened or how to play. The actual game screens allow the player to
+      interact with the sketch. Each level also differs in the value of the
+      timer.
+    </p>
+    <h3>Interaction & Evolution</h3>
+    <p>
+      Score: 15<br />Justification: The user interacts with the sketch by
+      clicking to start the game, by pressing the WASD keys to move the avatar,
+      and by pressing the space bar for a short reveal of the maze. When the
+      user reaches the end of the maze for each level, they move on the next
+      level. They also have to press a key to acknowledge and start the next
+      level. Over time, in each level, the system degrades through the timer
+      running down.
+    </p>
+    <h3>Iterative Development</h3>
+    <p>
+      Score: 15<br />Justification: The evolution of the system is visible
+      through the progress sketches numbers 1 and 2. The first iteration
+      involved just a constraint box and a circle that the user could move. The
+      idea was that when the user would click the mouse, the constraint would
+      drop for some amount of time in which the user could move the circle. If
+      they moved outside of the bounds of the constraint in time, they won. This
+      sketch did not have all functionality, including the timer built in yet.
+      In the second iteration, I changed the box to overlapping rectangles that
+      function as a maze. Again, the goal was to move the circle through the
+      maze in time but the timer was still not built. I also had to figure out a
+      different way to build the maze since overlapping constraints would not
+      allow the circle to move through. The final iteration evolved into a more
+      thematic game. The constraints were changed to a collision detection
+      system that allowed the avatar to move only within the parameters of the
+      rectangles. The timer was added as well as the rest of the maze and all
+      the other visual aspects.
+    </p>
+    <h3>Documentation & Logging</h3>
+    <p>
+      Score: 12<br />Justification: The sketchbook entries that document my
+      progress are under Micro Project Ideas, Micro Project - Progress #1, Micro
+      Project - Progress #2, and Micro Project - Final on the main index page.
+    </p>
+    <h3>Risk & Experimentation</h3>
+    <p>
+      Score: 10<br />Justification: I didn't really take many risks with this
+      sketch but I did try out many things that we did not go over in class,
+      such as adding in menus, flashing text and sprites. The most structurally
+      complex thing in the sketch is the functionality of the rectangles that
+      make up the maze. I had to create new functions to make some things work,
+      such as checking if the avatar is inside the boxes.
+    </p>
+    <h3>Participation & Critique Engagement</h3>
+    <p>
+      Score: 8<br />Justification: I tried to include most of the things other
+      students advised in the critique. These were adding more levels, a way to
+      reveal the maze to help the user, decreasing the timer for each level, and
+      changing movement to WASD instead of arrow keys.
+    </p>
   </body>
 </html>

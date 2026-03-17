@@ -8,7 +8,7 @@ let mole;
 let worm;
 let font;
 let startTime;
-let timeLimit = 20000;
+let timeLimit = 30000;
 let timeLeft;
 let gameOver = false;
 let level = 1;
@@ -21,7 +21,7 @@ let revealUsed = false;
 // Store all maze boxes in one array
 const boxes = [
   { x: 800, y: 50, w: 150, h: 400 }, //box 1
-  { x: 50, y: 50, w: 2000, h: 150 }, //box 2
+  { x: 50, y: 50, w: 950, h: 150 }, //box 2
   { x: 100, y: 50, w: 150, h: 850 }, //box 3
   { x: 100, y: 750, w: 400, h: 150 }, //box 4
   { x: 350, y: 450, w: 150, h: 450 }, //box 5
@@ -31,7 +31,7 @@ const boxes = [
   { x: 1150, y: 50, w: 150, h: 850 }, //box 9
   { x: 1150, y: 50, w: 450, h: 150 }, //box 10
   { x: 1400, y: 50, w: 150, h: 600 }, //box 11
-  { x: 1400, y: 400, w: 500, h: 150 }, //box 12
+  { x: 1400, y: 425, w: 500, h: 150 }, //box 12
 ];
 
 function preload() {
@@ -49,7 +49,7 @@ function setup() {
   worm.resize(40, 0);
 }
 
-// Check if (x,y) is inside ANY box in the array
+// Check if mole is inside ANY box in the array
 function insideBox(x, y) {
   return boxes.some(
     (b) =>
@@ -72,7 +72,7 @@ function startNextLevel() {
   moleY = 300;
 
   if (level === 2) {
-    timeLimit = 15000;
+    timeLimit = 20000;
   }
   if (level === 3) {
     timeLimit = 10000;
@@ -114,7 +114,7 @@ function drawGame() {
   }
 
   // Movement with WASD keys and starting the timer on first move
-  let speed = 15;
+  let speed = 5;
   let nextX = moleX;
   let nextY = moleY;
 
@@ -251,7 +251,7 @@ function keyPressed() {
     return;
   }
   // space bar reveals maze
-  if (keyCode === 32) {
+  if (keyCode === 32 && !revealUsed) {
     showMaze = true;
     mazeRevealStart = millis();
     revealUsed = true;
