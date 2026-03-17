@@ -75,7 +75,7 @@ function startNextLevel() {
     timeLimit = 20000;
   }
   if (level === 3) {
-    timeLimit = 10000;
+    timeLimit = 15000;
   }
 }
 
