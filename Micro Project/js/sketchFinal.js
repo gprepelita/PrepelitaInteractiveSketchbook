@@ -114,7 +114,7 @@ function drawGame() {
   }
 
   // Movement with WASD keys and starting the timer on first move
-  let speed = 5;
+  let speed = 7;
   let nextX = moleX;
   let nextY = moleY;
 
