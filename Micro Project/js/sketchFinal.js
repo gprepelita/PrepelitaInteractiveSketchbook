@@ -84,6 +84,30 @@ function draw() {
   menuOff ? drawGame() : drawMenu();
 }
 
+// function for restarting the game
+function resetGame() {
+  // Reset all game state variables
+  level = 1;
+  menuOff = true;
+  gameStarted = false;
+  gameWon = false;
+  gameOver = false;
+  levelStartScreen = false;
+  revealUsed = false;
+  showMaze = false;
+
+  // Reset mole position
+  moleX = 827;
+  moleY = 300;
+  moleAngle = 0;
+
+  // Reset the timer
+  timeLimit = 30000;
+
+  // Restarting the draw loop
+  loop();
+}
+
 function drawGame() {
   // Drawing a start screen for each level
   if (levelStartScreen) {
@@ -187,6 +211,9 @@ function drawGame() {
     textFont(font);
     textSize(100);
     text("You Win!", width / 2, height / 3);
+
+    textSize(30);
+    text("Press 'R' to Play Again", width / 2, height / 2);
     noLoop(); // Stop the draw loop to freeze the win screen
   }
 
@@ -196,6 +223,9 @@ function drawGame() {
     textAlign(CENTER, CENTER);
     textSize(100);
     text("Try Again!", width / 2, height / 3);
+
+    textSize(30);
+    text("Press 'R' to Restart", width / 2, height / 2);
     noLoop();
   }
 
@@ -246,6 +276,11 @@ function drawMenu() {
 }
 
 function keyPressed() {
+  // Check for restart key (R)
+  if (keyCode === 82) {
+    resetGame();
+  }
+
   if (levelStartScreen) {
     levelStartScreen = false;
     return;
