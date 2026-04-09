@@ -1,0 +1,70 @@
+<!-- website setup -->
+<!doctype html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI/UX Reflection - Nielsen Heuristics</title>
+  </head>
+
+  <body>
+    <h1>Interface Audit of Micro Project Page</h1>
+    <h2>Visibility of System Status</h2>
+    <p>
+      I believe my micro project does a good job of providing the user with
+      visibility into the system status and where they are in the process/game.
+      The first screen the user sees is a menu that informs them of how the game
+      works, what the controls are, and what they need to do to win. Following
+      that, they are shown the game screen but are again informed that they need
+      to press a button to begin, letting them know the system is ready for
+      interaction. Once the game starts, they are shown the level they are in
+      and the countdown timer which are important indicators of where one is in
+      the game. At the end of every level there is another menu informing users
+      that the next level is coming up as well. Finally, when the user either
+      wins or loses the game another menu comes up yet again informing them of
+      the outcome and giving them the option to play again. There is also a line
+      of text in the game that tells the user they can press a key for help,
+      which is another example of a visible interactable element. I think one
+      weakness in the visibility of the system status in my micro project is the
+      visual hierarchy of the text elements on the screen. These are not very
+      prominent on the screen since the main game takes up most of the visual
+      space.
+    </p>
+    <h2>Affordances and Signifiers</h2>
+    <p>
+      The actions available on my micro project page are clicking (to get
+      through the starting menu), and pressing keys to move, use the helping
+      mechanic, go on to the next level, and restart the game. These are
+      signified through instructions on all the menu screens informing users
+      that they can click or press keys to perform these actions. Nothing else
+      is clickable in the game besides the start menu, so the user doesn't have
+      to guess what they can do, at least with the mouse. I think the only thing
+      that is interactive that may be a little unclear is the "press space to
+      reveal maze" helping mechanic, which is tucked into the top left corner so
+      the user might not notice it immediately. The overall visual design of
+      this button as well as the menus could be improved to make the interactive
+      elements more obvious.
+    </p>
+    <h2>Navigation and Mapping</h2>
+    <p>
+      The user navigates through the game by clicking buttons on the menu
+      screens and pressing keys to move around in the game. The movement keys
+      are mapped to WASD which is a common mapping for many games, but may not
+      be very familiar to non-gamers who may find the arrow keys more intuitive.
+      The reason for this mapping however is because the window of the game
+      moves when the arrow keys are pressed, which is something I wanted to
+      avoid. I believe that WASD is still intuitive however as they are
+      basically the same layout as the arrow keys, plus the user is informed at
+      the very beginning of the game about the controls.</br>
+      The visual hierarchy of the text elements on the screen could be improved to make navigation clearer. Besides this, the interaction is pretty straightforward and predictable: the avatar will move in the direction of the key pressed, which maps visually to the keys on the keyboard. The only place I feel where a user might hesitate is right after the main menu screen, but before the game has started, where the user is prompted to press a key to move and start the game. I tried mitigating this by making the prompt flash on the screen to draw attention to it.
+    </p>
+    <h2>Constraints and Assumptions</h2>
+    <p>This interaction assumes the user knows how to use a mouse and keyboard. There is a literal hidden element in the game, which is the maze the user has to navigate through, but that is part of the game itself. The user must "guess" where to move but they familiarize themselves with the layout of the game over time. Their movement is restricted to the inside of the maze/tunnel.</p>
+    <h2>Heuristic Violations</h2>
+    <p>One heuristic my micro project violates is flexibility and efficiency of use. There are no shortcuts for expert users, and the interaction is the same for everyone at all times. The only way the user can interact with the system is through the controls stated in the menu. I believe this isn't a huge issue for the scope of the game at this point, but if I were to add more complexity in the future, then adding a feature for shortcuts and custom control mapping would be beneficial for user satisfaction.</br>
+    Another heuristic violation that I think is worth mentioning is error prevention. I did not include any sort of mechanisms to detect or prevent errors. If something unexpected were to occur, whether in the menus or during gameplay, the user would not be notified or given the opportunity to correct the issue and would probably have to restart the window. I think the way I would fix this is by observing users while they interact with the game, see if any issues come up, then try to write code to prevent them from happening or include some sort of popup error message system.</p>
+    <h2>Structural Revision Proposal</h2>
+    <p>The structural changes I would propose would be as follows: first, hierachy of the text elements and instructions. I could play with the sizing and positioning of these to see what would make them more evident to the user. Second, I could add an actual button to click on the main menu, as well as something like a diagram of the WASD controls to make that part of the interaction more obvious. Finally, I think navigation and overall interaction could be improved by adding a way to pause the game, or restart from the beginning of the current level, or go back a level (or to the main menu/controls menu).
+    </p>
+  </body>
+</html>
