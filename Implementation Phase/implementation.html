@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- p5 core -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"
+      defer
+    ></script>
+
+    <!-- p5 sound -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"
+      defer
+    ></script>
+    <title>Micro Project</title>
+  </head>
+  <body>
+    <div
+      data-layer="Desktop - Micro Project Page"
+      class="DesktopMicroProjectPage"
+    >
+      <div data-layer="Rectangle 1" class="Rectangle1"></div>
+
+      <div data-layer="Micro Project - Final" class="MicroProjectFinal">
+        Micro Project - Final
+      </div>
+
+      <div data-layer="Rectangle 5" class="Rectangle5"></div>
+
+      <div data-layer="Home" class="Home">
+        <div data-svg-wrapper data-layer="Home" class="Home">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 44V24H30V44M6 18L24 4L42 18V40C42 41.0609 41.5786 42.0783 40.8284 42.8284C40.0783 43.5786 39.0609 44 38 44H10C8.93913 44 7.92172 43.5786 7.17157 42.8284C6.42143 42.0783 6 41.0609 6 40V18Z"
+              stroke="var(--Icon-Default-Default, #1E1E1E)"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+      <div data-layer="Sidebar Search Field 2" class="SidebarSearchField2">
+        <div data-layer="Sidebar Search Field" class="SidebarSearchField">
+          <div data-layer="Sidebar Search Field" class="SidebarSearchField">
+            <div
+              data-layer="Search Field"
+              data-mode="Light"
+              data-state="Placeholder"
+              class="SearchField"
+            >
+              <div data-layer="Frame" class="Frame">
+                <div data-layer="􀊫">􀊫</div>
+
+                <div data-layer="Search" class="Search">Search</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-layer="Build" class="Build">
+        In this sketch/game, the user has to navigate a maze while blind and
+        beat a timer in order to win. The user controls an avatar (the mole)
+        that can only move inside the maze, but the maze disappears as soon as
+        the game starts, so they have to remember the layout of the maze in
+        order to navigate it. The main variable is "gameStarted", which checks
+        when the game begins, but the variables that make up the maze are also
+        important. The things that change with user interaction are movement,
+        the timer, the disappearance of the maze on start, and the brief
+        reappearance of the maze when the user presses the space bar. There are
+        3 levels, with each having a shorter timer than the last. If the user
+        beats all 3 levels, they win the game. The game can be reset by pressing
+        "R" upon either losing or winning.
+      </div>
+
+      <div data-layer="Current Build" class="CurrentBuild">Current Build</div>
+
+      <img src="img/molesprite.png" alt="Mole Sprite" class="MoleSprite" />
+
+      <div data-layer="Tension" class="Tension">
+        The tension in this system comes mainly from the timer the user will
+        have to beat in order to win, as well as the blind maze navigation.
+      </div>
+
+      <img src="img/wormsprite.png" alt="Worm Sprite" class="WormSprite" />
+
+      <div data-layer="Pressures" class="Pressures">Pressures</div>
+    </div>
+
+    <!-- sketch -->
+    <script src="js/sketchFinal.js"></script>
+
+    <footer>
+      <!-- insert footer information -->
+    </footer>
+  </body>
+</html>
